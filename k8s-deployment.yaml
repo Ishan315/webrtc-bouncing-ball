@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webrtc-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webrtc-server
+  template:
+    metadata:
+      labels:
+        app: webrtc-server
+    spec:
+      containers:
+      - name: webrtc-server
+        image: webrtc-server:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 4433
+          protocol: UDP
+        - containerPort: 4433
+          protocol: TCP
+        - containerPort: 50000
+          protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webrtc-service
+spec:
+  selector:
+    app: webrtc-server
+  ports:
+    - name: udp
+      protocol: UDP
+      port: 4433
+      targetPort: 4433
+    - name: tcp
+      protocol: TCP
+      port: 4433
+      targetPort: 4433
+    - name: webrtc
+      protocol: UDP
+      port: 50000
+      targetPort: 50000
+  type: LoadBalancer

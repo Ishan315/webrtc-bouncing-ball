@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC & WebTransport Bouncing Ball</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 20px; }
+        video, canvas { border: 1px solid #ccc; max-width: 100%; width: 640px; height: 480px; background: #000; }
+        .stats { margin-top: 10px; font-size: 1.2em; color: #333; }
+        #error-display { font-weight: bold; color: #d9534f; }
+    </style>
+</head>
+<body>
+    <h1>Bouncing Ball Tracker</h1>
+    <div class="container">
+        <video id="remote-video" autoplay playsinline muted></video>
+        <canvas id="tracker-canvas" width="640" height="480" style="display:none;"></canvas>
+        <div class="stats">
+            Current Error (pixels): <span id="error-display">0.00</span>
+        </div>
+        <div id="status">Connecting...</div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

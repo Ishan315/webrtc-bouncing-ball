@@ -1,0 +1,7 @@
+aiortc
+aioquic
+numpy
+opencv-python
+av
+pytest
+aiohttp
